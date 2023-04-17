@@ -13,6 +13,13 @@ export async function createTicketType() {
   });
 }
 
+export async function getTicketsType() {
+  return await prisma.ticketType.findMany()
+}
+export async function findTicketByTicketTypeId(id: number) {
+  return await prisma.ticket.findFirst({where: {id}})
+}
+
 export async function createTicket(enrollmentId: number, ticketTypeId: number, status: TicketStatus) {
   return prisma.ticket.create({
     data: {
