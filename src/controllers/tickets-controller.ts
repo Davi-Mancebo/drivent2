@@ -1,15 +1,31 @@
+import express from "express"
 import { Request, Response } from 'express';
-import {
-  findTicketByTicketTypeId,
-  findEnrollmentByUserId,
-  findTicketsType,
-  findTicketsTypeById,
-  findTicketsTypeByEnrollmentId,
-} from '../factories';
-import httpStatus from 'http-status';
 import { createTicket } from '../factories';
 
+import httpStatus from 'http-status';
+import { prisma } from '@/config';
+
+async function findEnrollmentByUserId(id: number) {
+  return prisma.enrollment.findUnique({where: {userId: id}})
+}
+async function findTicketsType() {
+  return await prisma.ticketType.findMany();
+}
+async function findTicketsTypeById(id: number) {
+  return await prisma.ticketType.findFirst({ where: { id } });
+}
+async function findTicketsTypeByEnrollmentId(id: number) {
+  return await prisma.ticket.findFirst({where: {enrollmentId: id}})
+}
+async function findTicketByTicketTypeId(id: number) {
+  return await prisma.ticket.findFirst({ where: {ticketTypeId: id} });
+}
+
+
 async function returnTypesTicket(req: Request, res: Response) {
+  function findTicketByTicketTypeId(){
+
+  }
   try {
     const tickets = await findTicketsType();
 

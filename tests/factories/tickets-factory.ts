@@ -13,19 +13,6 @@ export async function createTicketType() {
   });
 }
 
-export async function findTicketsType() {
-  return await prisma.ticketType.findMany();
-}
-export async function findTicketsTypeById(id: number) {
-  return await prisma.ticketType.findFirst({ where: { id } });
-}
-export async function findTicketsTypeByEnrollmentId(id: number) {
-  return await prisma.ticket.findFirst({where: {enrollmentId: id}})
-}
-export async function findTicketByTicketTypeId(id: number) {
-  return await prisma.ticket.findFirst({ where: {ticketTypeId: id} });
-}
-
 export async function createTicket(enrollmentId: number, ticketTypeId: number, status: TicketStatus) {
   return prisma.ticket.create({
     data: {

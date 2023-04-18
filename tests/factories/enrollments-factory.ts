@@ -5,9 +5,6 @@ import { User } from '@prisma/client';
 import { createUser } from './users-factory';
 import { prisma } from '@/config';
 
-export async function findEnrollmentByUserId(id: number) {
-  return prisma.enrollment.findUnique({where: {userId: id}})
-}
 export async function createEnrollmentWithAddress(user?: User) {
   const incomingUser = user || (await createUser());
 
