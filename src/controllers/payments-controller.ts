@@ -34,7 +34,7 @@ export async function processPayment(req: Request, res: Response) {
 }
 
 export async function getPaymentByTicketId(req: Request, res: Response) {
-    const { ticketId } = req.query;
+    const { ticketId } = req.params;
   
     if (!ticketId) {
       return res.status(httpStatus.BAD_REQUEST).send();
