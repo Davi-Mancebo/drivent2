@@ -1,7 +1,10 @@
+import { authenticateToken } from '@/middlewares';
 import { Router } from 'express';
 
 const paymentRouter = Router();
 
-paymentRouter.get('')
-paymentRouter.post('/process')
+paymentRouter
+    .all("/*", authenticateToken)
+    .get('/')
+    .post('/process')
 export { paymentRouter };
